@@ -7,6 +7,13 @@
     font-weight: 500;
 }
 
+:root {
+    --primary-color: #A8FF36;
+    --secondary-color: #12D27C;
+    --text-color: #000000;
+    --background-color: #FFFFFF;
+}
+
 * {
     padding:0;
     margin:0;
@@ -625,6 +632,13 @@ footer {
 
         & #menu-icon {
             display: none;
+        }
+
+        & #close-icon {
+            display: none;
+            color: #FFF;
+            font-size: 30px;
+            cursor: pointer;
         }
 
         && nav ul {
