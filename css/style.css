@@ -8,8 +8,9 @@
 }
 
 :root {
-    --primary-color: #A8FF36;
-    --secondary-color: #12D27C;
+
+    --green-strong-color: #12D27C;
+    --green-light-color: #A8FF36;
     --text-color: #000000;
     --background-color: #FFFFFF;
 }
@@ -56,7 +57,7 @@ h1, h2, h3, h4 {
 }
 
 button {
-    background: #12D27C;
+    background: var(--green-strong-color);
 
     && a {
         color: #000;
@@ -180,20 +181,47 @@ footer {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+    position: relative;
 
     & #menu-icon {
         display: block;
         color: #FFF;
         font-size: 30px;
         cursor: pointer;
+        position: absolute;
+        z-index: 10;
+        right: 20px;
+        top: 30px;
     }
 
     && nav ul {
         display: none;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        gap: 35px;
+        position: absolute;
+        right: 0;
+        top: 80px;
+        background: #000;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        width: 100vw;
+        opacity: 0;
+        animation: menu-close 0.3s ease-in-out forwards;
+
+        & li {
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            border-radius: 20px;
+            border-bottom: 1px solid var(--green-strong-color);
+        }
+
+        &.active {
+            display: flex;
+            animation: menu-open 0.3s ease-in-out forwards;
+            opacity: 1;
+        }
     }
 
     && nav a {
@@ -634,18 +662,32 @@ footer {
             display: none;
         }
 
-        & #close-icon {
-            display: none;
-            color: #FFF;
-            font-size: 30px;
-            cursor: pointer;
-        }
-
         && nav ul {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            align-items: center;
+            position: static;
+            opacity: 1;
             gap: 20px;
+            width: 100%;
+            background: none;
+            border-radius: 0;
+            animation: none;
+            
+            & li {
+                width: 100%;
+                text-align: center;
+                border-radius: 0;
+                border-bottom: 0;
+            }
+        }
+
+
+        &.active {
+            display: flex;
+            animation: menu-open 0.3s ease-in-out forwards;
+            opacity: 1;
         }
 
         && button {
@@ -793,5 +835,26 @@ footer {
                 text-align: left;
             }
         }
+    }
+}
+
+@keyframes menu-open {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes menu-close {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
     }
 }
